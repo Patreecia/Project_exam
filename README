@@ -1,0 +1,37 @@
+LAMP Stack Deployment Script
+This script automates the deployment of a LAMP (Linux, Apache, MySQL, PHP) stack along with a Laravel PHP application on an Ubuntu server.
+
+Prerequisites
+Ubuntu Server
+Internet connectivity
+Root or sudo privileges
+
+Description
+This script automates the following tasks:
+
+Updates the package index and installs necessary packages including Apache, MySQL, PHP, and Composer.
+Secures MySQL installation and configures PHP.
+Clones a Laravel application from a GitHub repository.
+Installs Composer dependencies for Laravel.
+Sets up environment configuration.
+Configures Apache to serve the Laravel application.
+Generates application key, migrates the database, and sets permissions
+
+
+Ansible Playbook Documentation
+This Ansible playbook automates various tasks on a slave node. It is designed to execute tasks such as running a Bash script, performing HTTP requests to a PHP application, and checking server uptime.
+
+Playbook Structure
+Run Bash script on slave node
+Copies the Bash script exam.sh from the local machine to the slave node.
+Executes the script on the slave node.
+Perform HTTP request to PHP application
+Sends an HTTP GET request to the specified URL, which is the IP address where your PHP application is hosted.
+Registers the response from the application.
+Asserts that the HTTP response status code is 200, indicating that the application is accessible.
+Check server uptime
+This section can be expanded to include tasks for checking server uptime.
+Configuration
+Ensure that Ansible is installed on your local machine.
+Modify the hosts file in the playbook to specify the target slave node.
+Update the path to the Bash script (exam.sh) according to your setup.

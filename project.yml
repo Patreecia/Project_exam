@@ -1,0 +1,34 @@
+---
+- name: Run Bash script on slave node
+  hosts: slave
+  become: true
+  tasks:
+    - name: Copy script to slave node
+      copy:
+        src: /home/vagrant/exam.sh  # Update the path to your script
+        dest: /home/vagrant/exam.sh
+
+    - name: Execute script on slave node
+      command: bash /home/vagrant/exam.sh
+
+    - name: Perform HTTP request to PHP application
+      uri:
+        url: "http://192.168.1.101"
+        method: GET
+      register: response
+
+    - name: Check if the application is accessible
+      assert:
+        that:
+          - response.status == 200
+
+- name: Check server uptime
+  hosts: slave
+  tasks:
+    - name: Execute the uptime command
+      command: uptime
+      register: uptime_output
+
+    - name: Display server uptime
+      debug:
+        msg: "Server uptime is {{ uptime_output.stdout }}"
