@@ -22,10 +22,7 @@
         that:
           - response.status == 200
 
-- name: Check server uptime
-  hosts: slave
-  tasks:
-    - name: Execute the uptime command
+    - name: Check server uptime and Execute the uptime command
       command: uptime
       register: uptime_output
 
